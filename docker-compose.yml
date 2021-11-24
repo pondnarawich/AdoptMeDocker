@@ -1,17 +1,16 @@
 version: '3'
 services: # each service run simultaneously (parallel)
 
-  backend:
+  server:
+    build: .
     image: backend:latest
     depends_on:
       - frontend
     restart: always
     ports:
       - 8080:8080
-    # environment:
-    #   - AWS_PROFILE=${AWS_PROFILE}
-    # volumes:
-    # - $HOME/.aws/:/home/.aws/
+    env_file:
+      - ~/aws_env_creds
 
   frontend:
     image: frontend:latest
