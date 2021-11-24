@@ -9,11 +9,8 @@ services: # each service run simultaneously (parallel)
     restart: always
     ports:
       - 8080:8080
-    # env_file:
-    #   - ~/aws_env_creds
-    networks:
-      - adoptme
-
+    env_file:
+      - ~/aws_env_creds
 
   frontend:
     image: frontend:latest
@@ -24,8 +21,7 @@ services: # each service run simultaneously (parallel)
       - 3000:3000
     environment:
       - CHOKIDAR_USEPOLLING=true
-    networks:
-      - adoptme
 
 networks:
-  adoptme:
+    default:
+        driver: custom-driver-1
