@@ -11,8 +11,8 @@ services: # each service run simultaneously (parallel)
     environment:
       - AWS_PROFILE=${AWS_PROFILE}
     volumes:
-      - ~/.aws/:/root/.aws:ro
-  
+    - $HOME/.aws/credentials:/home/app/.aws/credentials:ro
+    
   frontend:
     image: frontend:latest
     volumes:
