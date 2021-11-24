@@ -8,10 +8,10 @@ services: # each service run simultaneously (parallel)
     restart: always
     ports:
       - 8080:8080
-    environment:
-      - AWS_PROFILE=${AWS_PROFILE}
-    volumes:
-    - $HOME/.aws/:/home/.aws/
+    # environment:
+    #   - AWS_PROFILE=${AWS_PROFILE}
+    # volumes:
+    # - $HOME/.aws/:/home/.aws/
 
   frontend:
     image: frontend:latest
