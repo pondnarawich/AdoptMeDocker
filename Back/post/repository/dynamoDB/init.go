@@ -16,10 +16,6 @@ func New(region string)(repo *Repository, err error) {
 	sess := session.Must(session.NewSessionWithOptions(session.Options{
 		SharedConfigState: session.SharedConfigEnable,
 	}))
-	sess, err = session.NewSession(&aws.Config{
-		Region:      aws.String(region),
-		Credentials: credentials.NewEnvCredentials(),
-	})
 	fmt.Println("error cant connect to aws session:", err)
 	svc := dynamodb.New(sess)
 	repo = &Repository{}
