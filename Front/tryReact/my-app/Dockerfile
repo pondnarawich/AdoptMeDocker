@@ -1,16 +1,13 @@
-version: '3.7'
-
-services:
-
-  frontend:
-    container_name: frontend
-    build: ./frontend
-    volumes:
-      - './:/my-app'
-      - '/my-app/node_modules'
-    ports:
-      - 3000:3000
-    stdin_open: true
-    environment:
-      - CHOKIDAR_USEPOLLING=true
-    command: npm start
+FROM node:10.19
+ 
+WORKDIR /usr/src/app
+ 
+COPY package*.json ./
+ 
+RUN npm install
+ 
+COPY . .
+ 
+EXPOSE 3000
+ 
+CMD [ "npm", "start" ]
