@@ -2,8 +2,10 @@ version: '3'
 services: # each service run simultaneously (parallel)
 
   server:
-    build: .
-    image: backend:latest
+    build:
+      context: .
+      dockerfile: ./Back/post/Dockerfile
+      network: host
     depends_on:
       - frontend
     restart: always
@@ -16,7 +18,10 @@ services: # each service run simultaneously (parallel)
 
 
   frontend:
-    image: frontend:latest
+    build:
+      context: .
+      dockerfile: ./Front/tryReact/my-app/Dockerfile
+      network: host
     volumes:
       - './frontend:/app'
       - '/app/node_modules'
@@ -26,6 +31,3 @@ services: # each service run simultaneously (parallel)
       - CHOKIDAR_USEPOLLING=true
     networks:
       - adoptme
-
-networks:
-  adoptme:
