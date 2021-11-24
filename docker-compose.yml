@@ -12,8 +12,6 @@ services: # each service run simultaneously (parallel)
       - 8080:8080
     env_file:
       - ~/aws_env_creds
-    networks:
-      - host
 
 
   frontend:
@@ -27,5 +25,7 @@ services: # each service run simultaneously (parallel)
       - 3000:3000
     environment:
       - CHOKIDAR_USEPOLLING=true
-    networks:
-      - host
+
+networks:
+    default:
+        driver: custom-driver-1
